@@ -97,6 +97,9 @@ def seed_db():
         db.session.commit()
         app.logger.info("Seeded initial Q&A items.")
 
+with app.app_context():
+    db.create_all()
+
 # ---------------------- Helpers ----------------------
 def is_logged_in():
     return session.get("admin_user") is not None
@@ -206,3 +209,4 @@ if __name__ == "__main__":
         db.create_all()
         seed_db()
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
+
