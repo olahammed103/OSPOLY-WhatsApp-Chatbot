@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="admin-grid">
+  <section class="card">
+    <h2>Add New Q&A</h2>
+    <form method="post">
+      <label>Question</label>
+      <textarea name="question" rows="2" required></textarea>
+      <label>Answer</label>
+      <textarea name="answer" rows="4" required></textarea>
+      <button type="submit">Add</button>
+    </form>
+  </section>
+  <section class="card">
+    <h2>All Q&A</h2>
+    <table class="table">
+      <thead>
+        <tr><th>#</th><th>Question</th><th>Answer</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        {% for qa in qas %}
+        <tr>
+          <td>{{ qa.id }}</td>
+          <td>{{ qa.question }}</td>
+          <td>{{ qa.answer }}</td>
+          <td class="actions">
+            <a class="btn" href="{{ url_for('admin_edit', qa_id=qa.id) }}">Edit</a>
+            <form method="post" action="{{ url_for('admin_delete', qa_id=qa.id) }}" onsubmit="return confirm('Delete this Q&A?');">
+              <button class="btn danger" type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+{% endblock %}

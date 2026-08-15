@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Edit Q&A #{{ qa.id }}</h2>
+  <form method="post">
+    <label>Question</label>
+    <textarea name="question" rows="2" required>{{ qa.question }}</textarea>
+    <label>Answer</label>
+    <textarea name="answer" rows="4" required>{{ qa.answer }}</textarea>
+    <div class="row">
+      <a class="btn" href="{{ url_for('admin_dashboard') }}">Cancel</a>
+      <button class="btn primary" type="submit">Save Changes</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

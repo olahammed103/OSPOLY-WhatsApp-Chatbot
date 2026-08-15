@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="chat-wrap">
+  <aside class="qa-sidebar">
+    <div class="sidebar-header">Quick Questions</div>
+    <select id="qa-select" class="qa-select">
+      <option value="" selected>— Select a question —</option>
+      {% for qa in qas %}
+      <option value="{{ qa.question|e }}">{{ qa.question }}</option>
+      {% endfor %}
+    </select>
+    <div class="qa-list">
+      {% for qa in qas %}
+      <button class="qa-item" data-question="{{ qa.question|e }}">{{ qa.question }}</button>
+      {% endfor %}
+    </div>
+  </aside>
+  <section class="chat-section">
+    <div class="chat-header">
+      <div class="avatar">🟢</div>
+      <div>
+        <div class="title">OSPOLY WhatsApp Assistant</div>
+        <div class="subtitle">Ask a question or choose from the menu</div>
+      </div>
+    </div>
+    <div id="chat" class="chat-window"></div>
+    <div class="composer">
+      <input id="user-input" type="text" placeholder="Type your question here..." autocomplete="off">
+      <button id="send-btn">Send</button>
+    </div>
+  </section>
+</div>
+{% endblock %}
