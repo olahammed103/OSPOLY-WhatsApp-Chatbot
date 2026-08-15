@@ -99,6 +99,7 @@ def seed_db():
 
 with app.app_context():
     db.create_all()
+    seed_db()
 
 # ---------------------- Helpers ----------------------
 def is_logged_in():
@@ -209,4 +210,5 @@ if __name__ == "__main__":
         db.create_all()
         seed_db()
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
+
 
